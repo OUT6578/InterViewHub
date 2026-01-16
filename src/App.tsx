@@ -1,4 +1,4 @@
-import  { useState, useRef } from "react";
+import  { useState} from "react";
 import {
   Download,
   Eye,
@@ -17,9 +17,9 @@ const App = () => {
   // const [expandedQuestion, setExpandedQuestion] = useState(null);
   const [expandedQuestion, setExpandedQuestion] = useState<number | null>(null);
 
-  const [showAllCategories, setShowAllCategories] = useState(false);
+ 
   const [currentPage, setCurrentPage] = useState(1);
-  const categoryScrollRef = useRef<HTMLDivElement>(null);
+ 
   const ITEMS_PER_PAGE = 10;
 
   const categories = [
@@ -5449,15 +5449,7 @@ React.createElement('div', {id: 'abc'}, 'Hello')`,
       ? questions
       : questions.filter((q) => q.category === activeCategory);
 
-  const scrollCategories = (direction: "left" | "right") => {
-    if (categoryScrollRef.current) {
-      const scrollAmount = 300;
-      categoryScrollRef.current.scrollBy({
-        left: direction === "right" ? scrollAmount : -scrollAmount,
-        behavior: "smooth",
-      });
-    }
-  };
+
 
   // const getDifficultyColor = (difficulty) => {
   //   const colors = {
