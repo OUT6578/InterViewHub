@@ -1,4 +1,4 @@
-import  { useState } from "react";
+import  { useState, useRef } from "react";
 import {
   Download,
   Eye,
@@ -7,6 +7,8 @@ import {
   BookOpen,
   ChevronDown,
   ChevronUp,
+  ChevronLeft,
+  ChevronRight,
 } from "lucide-react";
 type Difficulty = "Easy" | "Medium" | "Hard" | "Expert";
 const App = () => {
@@ -16,6 +18,9 @@ const App = () => {
   const [expandedQuestion, setExpandedQuestion] = useState<number | null>(null);
 
   const [showAllCategories, setShowAllCategories] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const categoryScrollRef = useRef<HTMLDivElement>(null);
+  const ITEMS_PER_PAGE = 10;
 
   const categories = [
     {
@@ -23,13 +28,6 @@ const App = () => {
       name: "All Questions",
       icon: BookOpen,
       color: "bg-purple-500",
-      subCategories: [],
-    },
-      {
-      id: "quickRevsion",
-      name: "Quick Revision",
-      icon: BookOpen,
-      color: "bg-gray-500",
       subCategories: [],
     },
     {
@@ -102,6 +100,13 @@ const App = () => {
         "Fragment",
         "Strict Mode",
       ],
+    },
+    {
+      id: "react_advanced",
+      name: "React & Fullstack",
+      icon: Code,
+      color: "bg-blue-600",
+      subCategories: [],
     },
   ];
 
@@ -4256,460 +4261,1203 @@ React.createElement('div', {id: 'abc'}, 'Hello')`,
 • Hinglish: "Browser JSX nahi samajhta. Babel usko JavaScript function calls me convert karta hai."
 • Industrial: Understanding this helps in debugging and writing advanced patterns.`,
     },
+    // React & Fullstack Questions
     {
-      id:255,
-      category:"quickRevsion",
-      question:"What is React Fiber?",
-      output:"React Fiber is a reimplementation of React’s reconciliation algorithm that allows incremental rendering and prioritization."
-
+      id: 250,
+      category: "react_advanced",
+      level: "React Advanced",
+      difficulty: "Medium",
+      question: "What is React Fiber?",
+      code: ``,
+      output: ``,
+      explanation: `React Fiber is a reimplementation of React's reconciliation algorithm that enables incremental rendering, prioritization, and interruption for better performance.`,
     },
-    
-{
- id:255,
- category:"quickRevsion",
- question:"What is React Fiber?",
- output:"React Fiber is a reimplementation of React's reconciliation algorithm that enables incremental rendering, prioritization, and interruption for better performance."
-},
-{
- id:256,
- category:"quickRevsion",
- question:"Explain reconciliation in React.",
- output:"Reconciliation is the process where React compares the new virtual DOM with the previous one and updates only the changed parts in the real DOM."
-},
-{
- id:257,
- category:"quickRevsion",
- question:"How does React batching work?",
- output:"React groups multiple state updates into a single re-render to improve performance."
-},
-{
- id:258,
- category:"quickRevsion",
- question:"Difference between useEffect and useLayoutEffect?",
- output:"useLayoutEffect runs synchronously after DOM mutations, while useEffect runs asynchronously after paint."
-},
-{
- id:259,
- category:"quickRevsion",
- question:"How do you prevent unnecessary re-renders?",
- output:"Using React.memo, useCallback, useMemo, proper key usage, and splitting components."
-},
-{
- id:260,
- category:"quickRevsion",
- question:"What causes memory leaks in React?",
- output:"Uncleared timers, subscriptions, or event listeners inside useEffect."
-},
-{
- id:261,
- category:"quickRevsion",
- question:"How does React handle keys internally?",
- output:"Keys help React identify which elements have changed, added, or removed during reconciliation."
-},
-{
- id:262,
- category:"quickRevsion",
- question:"Explain controlled vs uncontrolled components.",
- output:"Controlled components use React state; uncontrolled rely on DOM state via refs."
-},
-{
- id:263,
- category:"quickRevsion",
- question:"How do you design scalable React architecture?",
- output:"By modular components, feature-based structure, reusable hooks, and clear state boundaries."
-},
-{
- id:264,
- category:"quickRevsion",
- question:"Redux vs Context API?",
- output:"Redux is better for complex global state, Context is suitable for small shared state."
-},
-{
- id:265,
- category:"quickRevsion",
- question:"What is middleware in Redux?",
- output:"Middleware intercepts actions to handle async logic or side effects."
-},
-{
- id:266,
- category:"quickRevsion",
- question:"How does Next.js improve performance?",
- output:"Through SSR, SSG, code splitting, image optimization, and caching."
-},
-{
- id:267,
- category:"quickRevsion",
- question:"What is hydration?",
- output:"Hydration attaches event listeners to server-rendered HTML on the client."
-},
-{
- id:268,
- category:"quickRevsion",
- question:"How do you handle authentication in SSR?",
- output:"By validating cookies or headers inside getServerSideProps."
-},
-{
- id:269,
- category:"quickRevsion",
- question:"Explain code splitting.",
- output:"Code splitting loads JavaScript in smaller chunks to reduce initial load time."
-},
-{
- id:270,
- category:"quickRevsion",
- question:"What are Web Vitals?",
- output:"Metrics like LCP, FID, and CLS that measure user experience performance."
-},
-{
- id:271,
- category:"quickRevsion",
- question:"How do you optimize large lists?",
- output:"Using virtualization libraries like react-window."
-},
-{
- id:272,
- category:"quickRevsion",
- question:"How do you secure React applications?",
- output:"By preventing XSS, using HTTP-only cookies, and secure API calls."
-},
-{
- id:273,
- category:"quickRevsion",
- question:"How do you test React apps?",
- output:"Using Jest for unit tests and Cypress for end-to-end tests."
-},
-
-/* ---------- React Quick Notes ---------- */
-
-{
- id:274,
- category:"quickRevsion",
- question:"What is React?",
- output:"A JavaScript library for building UI."
-},
-{
- id:275,
- category:"quickRevsion",
- question:"What is JSX?",
- output:"Syntax extension to write HTML in JS."
-},
-{
- id:276,
- category:"quickRevsion",
- question:"Virtual DOM?",
- output:"Lightweight copy of real DOM."
-},
-{
- id:277,
- category:"quickRevsion",
- question:"Why React is fast?",
- output:"Efficient diffing and batching."
-},
-{
- id:278,
- category:"quickRevsion",
- question:"Props vs State?",
- output:"Props are read-only, state is mutable."
-},
-{
- id:279,
- category:"quickRevsion",
- question:"Hooks?",
- output:"Functions to use state and lifecycle."
-},
-{
- id:280,
- category:"quickRevsion",
- question:"Rules of Hooks?",
- output:"Top-level, only in React functions."
-},
-{
- id:281,
- category:"quickRevsion",
- question:"useState?",
- output:"Manages component state."
-},
-{
- id:282,
- category:"quickRevsion",
- question:"useEffect?",
- output:"Handles side effects."
-},
-{
- id:283,
- category:"quickRevsion",
- question:"Dependency array?",
- output:"Controls effect execution."
-},
-{
- id:284,
- category:"quickRevsion",
- question:"useMemo?",
- output:"Memoizes values."
-},
-{
- id:285,
- category:"quickRevsion",
- question:"useCallback?",
- output:"Memoizes functions."
-},
-{
- id:286,
- category:"quickRevsion",
- question:"React.memo?",
- output:"Prevents unnecessary re-renders."
-},
-{
- id:287,
- category:"quickRevsion",
- question:"Key prop?",
- output:"Identifies list items."
-},
-{
- id:288,
- category:"quickRevsion",
- question:"Re-render cause?",
- output:"State/props change."
-},
-{
- id:289,
- category:"quickRevsion",
- question:"Prevent re-render?",
- output:"Memoization."
-},
-{
- id:290,
- category:"quickRevsion",
- question:"Fiber?",
- output:"React’s rendering engine."
-},
-{
- id:291,
- category:"quickRevsion",
- question:"Lazy loading?",
- output:"Load components on demand."
-},
-{
- id:292,
- category:"quickRevsion",
- question:"Suspense?",
- output:"Handles async rendering."
-},
-{
- id:293,
- category:"quickRevsion",
- question:"Context API?",
- output:"Global state sharing."
-},
-{
- id:294,
- category:"quickRevsion",
- question:"Redux?",
- output:"Predictable state container."
-},
-
-/* ---------- JavaScript Advanced ---------- */
-
-{
- id:295,
- category:"quickRevsion",
- question:"What is optional chaining?",
- output:"Safely access nested properties."
-},
-{
- id:296,
- category:"quickRevsion",
- question:"Nullish coalescing?",
- output:"Returns right operand if left is null or undefined."
-},
-{
- id:297,
- category:"quickRevsion",
- question:"What is module?",
- output:"Reusable piece of code with export/import."
-},
-{
- id:298,
- category:"quickRevsion",
- question:"ES6 features?",
- output:"Arrow functions, classes, promises, modules."
-},
-{
- id:299,
- category:"quickRevsion",
- question:"What is BigInt?",
- output:"Data type for large integers."
-},
-{
- id:300,
- category:"quickRevsion",
- question:"What is GC?",
- output:"Garbage Collector that frees unused memory."
-},
-
-/* ---------- Event Loop / Security ---------- */
-
-{
- id:301,
- category:"quickRevsion",
- question:"Microtask queue?",
- output:"Queue for promises and mutation observers."
-},
-{
- id:302,
- category:"quickRevsion",
- question:"Macrotask queue?",
- output:"Queue for setTimeout, setInterval, I/O."
-},
-{
- id:303,
- category:"quickRevsion",
- question:"Deep copy?",
- output:"Completely independent copy of an object."
-},
-{
- id:304,
- category:"quickRevsion",
- question:"Shallow copy?",
- output:"Copies only first-level properties."
-},
-{
- id:305,
- category:"quickRevsion",
- question:"Memory leak?",
- output:"Unused memory not released by GC."
-},
-{
- id:306,
- category:"quickRevsion",
- question:"Strict mode?",
- output:"Restricts unsafe JavaScript behavior."
-},
-{
- id:307,
- category:"quickRevsion",
- question:"Currying?",
- output:"Transforming function into nested functions."
-},
-{
- id:308,
- category:"quickRevsion",
- question:"IIFE?",
- output:"Immediately Invoked Function Expression."
-},
-{
- id:309,
- category:"quickRevsion",
- question:"Event bubbling?",
- output:"Event propagates from child to parent."
-},
-{
- id:310,
- category:"quickRevsion",
- question:"Event capturing?",
- output:"Event propagates from parent to child."
-},
-{
- id:311,
- category:"quickRevsion",
- question:"DOM?",
- output:"Document Object Model."
-},
-{
- id:312,
- category:"quickRevsion",
- question:"CORS?",
- output:"Security mechanism for cross-origin requests."
-},
-
-/* ---------- Core JavaScript ---------- */
-
-{
- id:313,
- category:"quickRevsion",
- question:"What is JavaScript?",
- output:"Single-threaded interpreted dynamic language."
-},
-{
- id:314,
- category:"quickRevsion",
- question:"Event Loop?",
- output:"Manages sync code, microtasks, macrotasks."
-},
-{
- id:315,
- category:"quickRevsion",
- question:"var vs let vs const?",
- output:"var function scoped, let/const block scoped."
-},
-{
- id:316,
- category:"quickRevsion",
- question:"Hoisting?",
- output:"Moves declarations to top."
-},
-{
- id:317,
- category:"quickRevsion",
- question:"Closure?",
- output:"Function remembers lexical scope."
-},
-{
- id:318,
- category:"quickRevsion",
- question:"== vs ===?",
- output:"== checks value, === checks value and type."
-},
-{
- id:319,
- category:"quickRevsion",
- question:"this keyword?",
- output:"Refers to execution context."
-},
-{
- id:320,
- category:"quickRevsion",
- question:"Call apply bind?",
- output:"Control function context."
-},
-{
- id:321,
- category:"quickRevsion",
- question:"Debounce?",
- output:"Delay execution."
-},
-{
- id:322,
- category:"quickRevsion",
- question:"Throttle?",
- output:"Limit execution rate."
-},
-{
- id:323,
- category:"quickRevsion",
- question:"Promise?",
- output:"Future value object."
-},
-{
- id:324,
- category:"quickRevsion",
- question:"Promise states?",
- output:"Pending, fulfilled, rejected."
-},
-{
- id:325,
- category:"quickRevsion",
- question:"async/await?",
- output:"Promise handling syntax."
-}
-
-
+    {
+      id: 251,
+      category: "react_advanced",
+      level: "React Advanced",
+      difficulty: "Medium",
+      question: "Explain reconciliation in React.",
+      code: ``,
+      output: ``,
+      explanation: `Reconciliation is the process where React compares the new virtual DOM with the previous one and updates only the changed parts in the real DOM.`,
+    },
+    {
+      id: 252,
+      category: "react_advanced",
+      level: "React Advanced",
+      difficulty: "Easy",
+      question: "How does React batching work?",
+      code: ``,
+      output: ``,
+      explanation: `React groups multiple state updates into a single re-render to improve performance.`,
+    },
+    {
+      id: 253,
+      category: "react_advanced",
+      level: "React Advanced",
+      difficulty: "Medium",
+      question: "Difference between useEffect and useLayoutEffect?",
+      code: ``,
+      output: ``,
+      explanation: `useLayoutEffect runs synchronously after DOM mutations, while useEffect runs asynchronously after paint.`,
+    },
+    {
+      id: 254,
+      category: "react_advanced",
+      level: "React Advanced",
+      difficulty: "Medium",
+      question: "How do you prevent unnecessary re-renders?",
+      code: ``,
+      output: ``,
+      explanation: `Using React.memo, useCallback, useMemo, proper key usage, and splitting components.`,
+    },
+    {
+      id: 255,
+      category: "react_advanced",
+      level: "React Advanced",
+      difficulty: "Medium",
+      question: "What causes memory leaks in React?",
+      code: ``,
+      output: ``,
+      explanation: `Uncleared timers, subscriptions, or event listeners inside useEffect.`,
+    },
+    {
+      id: 256,
+      category: "react_advanced",
+      level: "React Advanced",
+      difficulty: "Medium",
+      question: "How does React handle keys internally?",
+      code: ``,
+      output: ``,
+      explanation: `Keys help React identify which elements have changed, added, or removed during reconciliation.`,
+    },
+    {
+      id: 257,
+      category: "react_advanced",
+      level: "React Advanced",
+      difficulty: "Medium",
+      question: "Explain controlled vs uncontrolled components.",
+      code: ``,
+      output: ``,
+      explanation: `Controlled components use React state; uncontrolled rely on DOM state via refs.`,
+    },
+    {
+      id: 258,
+      category: "react_advanced",
+      level: "React Advanced",
+      difficulty: "Hard",
+      question: "How do you design scalable React architecture?",
+      code: ``,
+      output: ``,
+      explanation: `By modular components, feature-based structure, reusable hooks, and clear state boundaries.`,
+    },
+    {
+      id: 259,
+      category: "react_advanced",
+      level: "React Advanced",
+      difficulty: "Medium",
+      question: "Redux vs Context API?",
+      code: ``,
+      output: ``,
+      explanation: `Redux is better for complex global state, Context is suitable for small shared state.`,
+    },
+    {
+      id: 260,
+      category: "react_advanced",
+      level: "React Advanced",
+      difficulty: "Medium",
+      question: "What is middleware in Redux?",
+      code: ``,
+      output: ``,
+      explanation: `Middleware intercepts actions to handle async logic or side effects.`,
+    },
+    {
+      id: 261,
+      category: "react_advanced",
+      level: "React Advanced",
+      difficulty: "Medium",
+      question: "How does Next.js improve performance?",
+      code: ``,
+      output: ``,
+      explanation: `Through SSR, SSG, code splitting, image optimization, and caching.`,
+    },
+    {
+      id: 262,
+      category: "react_advanced",
+      level: "React Advanced",
+      difficulty: "Easy",
+      question: "What is hydration?",
+      code: ``,
+      output: ``,
+      explanation: `Hydration attaches event listeners to server-rendered HTML on the client.`,
+    },
+    {
+      id: 263,
+      category: "react_advanced",
+      level: "React Advanced",
+      difficulty: "Medium",
+      question: "How do you handle authentication in SSR?",
+      code: ``,
+      output: ``,
+      explanation: `By validating cookies or headers inside getServerSideProps.`,
+    },
+    {
+      id: 264,
+      category: "react_advanced",
+      level: "React Advanced",
+      difficulty: "Easy",
+      question: "Explain code splitting.",
+      code: ``,
+      output: ``,
+      explanation: `Code splitting loads JavaScript in smaller chunks to reduce initial load time.`,
+    },
+    {
+      id: 265,
+      category: "react_advanced",
+      level: "React Advanced",
+      difficulty: "Easy",
+      question: "What are Web Vitals?",
+      code: ``,
+      output: ``,
+      explanation: `Metrics like LCP, FID, and CLS that measure user experience performance.`,
+    },
+    {
+      id: 266,
+      category: "react_advanced",
+      level: "React Advanced",
+      difficulty: "Medium",
+      question: "How do you optimize large lists?",
+      code: ``,
+      output: ``,
+      explanation: `Using virtualization libraries like react-window.`,
+    },
+    {
+      id: 267,
+      category: "react_advanced",
+      level: "React Advanced",
+      difficulty: "Medium",
+      question: "How do you secure React applications?",
+      code: ``,
+      output: ``,
+      explanation: `By preventing XSS, using HTTP-only cookies, and secure API calls.`,
+    },
+    {
+      id: 268,
+      category: "react_advanced",
+      level: "React Advanced",
+      difficulty: "Easy",
+      question: "How do you test React apps?",
+      code: ``,
+      output: ``,
+      explanation: `Using Jest for unit tests and Cypress for end-to-end tests.`,
+    },
+    {
+      id: 269,
+      category: "react_advanced",
+      level: "Fundamentals",
+      difficulty: "Easy",
+      question: "What is React?",
+      code: ``,
+      output: ``,
+      explanation: `A JavaScript library for building UI.`,
+    },
+    {
+      id: 270,
+      category: "react_advanced",
+      level: "Fundamentals",
+      difficulty: "Easy",
+      question: "What is JSX?",
+      code: ``,
+      output: ``,
+      explanation: `Syntax extension to write HTML in JS.`,
+    },
+    {
+      id: 271,
+      category: "react_advanced",
+      level: "Fundamentals",
+      difficulty: "Easy",
+      question: "What is Virtual DOM?",
+      code: ``,
+      output: ``,
+      explanation: `Lightweight copy of real DOM.`,
+    },
+    {
+      id: 272,
+      category: "react_advanced",
+      level: "Fundamentals",
+      difficulty: "Easy",
+      question: "Why React is fast?",
+      code: ``,
+      output: ``,
+      explanation: `Efficient diffing & batching.`,
+    },
+    {
+      id: 273,
+      category: "react_advanced",
+      level: "Fundamentals",
+      difficulty: "Easy",
+      question: "What are Functional components?",
+      code: ``,
+      output: ``,
+      explanation: `Components written as functions.`,
+    },
+    {
+      id: 274,
+      category: "react_advanced",
+      level: "Fundamentals",
+      difficulty: "Easy",
+      question: "Props vs State?",
+      code: ``,
+      output: ``,
+      explanation: `Props are read-only, state is mutable.`,
+    },
+    {
+      id: 275,
+      category: "react_advanced",
+      level: "Fundamentals",
+      difficulty: "Easy",
+      question: "What are Hooks?",
+      code: ``,
+      output: ``,
+      explanation: `Functions to use state & lifecycle.`,
+    },
+    {
+      id: 276,
+      category: "react_advanced",
+      level: "Fundamentals",
+      difficulty: "Easy",
+      question: "What are Rules of Hooks?",
+      code: ``,
+      output: ``,
+      explanation: `Top-level, only in React functions.`,
+    },
+    {
+      id: 277,
+      category: "react_advanced",
+      level: "Fundamentals",
+      difficulty: "Easy",
+      question: "What is useState?",
+      code: ``,
+      output: ``,
+      explanation: `Manages component state.`,
+    },
+    {
+      id: 278,
+      category: "react_advanced",
+      level: "Fundamentals",
+      difficulty: "Easy",
+      question: "What is useEffect?",
+      code: ``,
+      output: ``,
+      explanation: `Handles side effects.`,
+    },
+    {
+      id: 279,
+      category: "react_advanced",
+      level: "Fundamentals",
+      difficulty: "Easy",
+      question: "What is Dependency array?",
+      code: ``,
+      output: ``,
+      explanation: `Controls effect execution.`,
+    },
+    {
+      id: 280,
+      category: "react_advanced",
+      level: "Fundamentals",
+      difficulty: "Easy",
+      question: "What is useMemo?",
+      code: ``,
+      output: ``,
+      explanation: `Memoizes values.`,
+    },
+    {
+      id: 281,
+      category: "react_advanced",
+      level: "Fundamentals",
+      difficulty: "Easy",
+      question: "What is useCallback?",
+      code: ``,
+      output: ``,
+      explanation: `Memoizes functions.`,
+    },
+    {
+      id: 282,
+      category: "react_advanced",
+      level: "Fundamentals",
+      difficulty: "Easy",
+      question: "What is React.memo?",
+      code: ``,
+      output: ``,
+      explanation: `Prevents unnecessary re-renders.`,
+    },
+    {
+      id: 283,
+      category: "react_advanced",
+      level: "Fundamentals",
+      difficulty: "Easy",
+      question: "What is Key prop?",
+      code: ``,
+      output: ``,
+      explanation: `Identifies list items.`,
+    },
+    {
+      id: 284,
+      category: "react_advanced",
+      level: "Fundamentals",
+      difficulty: "Easy",
+      question: "What causes re-render?",
+      code: ``,
+      output: ``,
+      explanation: `State/props change.`,
+    },
+    {
+      id: 285,
+      category: "react_advanced",
+      level: "Fundamentals",
+      difficulty: "Easy",
+      question: "How to prevent re-render?",
+      code: ``,
+      output: ``,
+      explanation: `Memoization.`,
+    },
+    {
+      id: 286,
+      category: "react_advanced",
+      level: "Fundamentals",
+      difficulty: "Easy",
+      question: "What is React.memo?",
+      code: ``,
+      output: ``,
+      explanation: `Prevents unnecessary re-renders.`,
+    },
+    {
+      id: 287,
+      category: "react_advanced",
+      level: "Fundamentals",
+      difficulty: "Easy",
+      question: "What is Reconciliation?",
+      code: ``,
+      output: ``,
+      explanation: `Updating DOM efficiently.`,
+    },
+    {
+      id: 288,
+      category: "react_advanced",
+      level: "Fundamentals",
+      difficulty: "Easy",
+      question: "What is Fiber?",
+      code: ``,
+      output: ``,
+      explanation: `React's rendering engine.`,
+    },
+    {
+      id: 289,
+      category: "react_advanced",
+      level: "Fundamentals",
+      difficulty: "Easy",
+      question: "What is Lazy loading?",
+      code: ``,
+      output: ``,
+      explanation: `Load components on demand.`,
+    },
+    {
+      id: 290,
+      category: "react_advanced",
+      level: "Fundamentals",
+      difficulty: "Easy",
+      question: "What is Code splitting?",
+      code: ``,
+      output: ``,
+      explanation: `Break bundle into chunks.`,
+    },
+    {
+      id: 291,
+      category: "react_advanced",
+      level: "Fundamentals",
+      difficulty: "Easy",
+      question: "What is Suspense?",
+      code: ``,
+      output: ``,
+      explanation: `Handles async rendering.`,
+    },
+    {
+      id: 292,
+      category: "react_advanced",
+      level: "Fundamentals",
+      difficulty: "Easy",
+      question: "What is Context API?",
+      code: ``,
+      output: ``,
+      explanation: `Global state sharing.`,
+    },
+    {
+      id: 293,
+      category: "react_advanced",
+      level: "Fundamentals",
+      difficulty: "Easy",
+      question: "What is Redux?",
+      code: ``,
+      output: ``,
+      explanation: `Predictable state container.`,
+    },
+    {
+      id: 294,
+      category: "react_advanced",
+      level: "Fundamentals",
+      difficulty: "Easy",
+      question: "What is Immutability?",
+      code: ``,
+      output: ``,
+      explanation: `State should not be mutated.`,
+    },
+    {
+      id: 295,
+      category: "react_advanced",
+      level: "Fundamentals",
+      difficulty: "Easy",
+      question: "What is Middleware?",
+      code: ``,
+      output: ``,
+      explanation: `Intercepts Redux actions.`,
+    },
+    {
+      id: 296,
+      category: "react_advanced",
+      level: "Fundamentals",
+      difficulty: "Easy",
+      question: "What is Thunk?",
+      code: ``,
+      output: ``,
+      explanation: `Handles async logic.`,
+    },
+    {
+      id: 297,
+      category: "react_advanced",
+      level: "Fundamentals",
+      difficulty: "Easy",
+      question: "What is Zustand?",
+      code: ``,
+      output: ``,
+      explanation: `Lightweight state management.`,
+    },
+    {
+      id: 298,
+      category: "react_advanced",
+      level: "Next.js",
+      difficulty: "Easy",
+      question: "What is Next.js?",
+      code: ``,
+      output: ``,
+      explanation: `React framework.`,
+    },
+    {
+      id: 299,
+      category: "react_advanced",
+      level: "Next.js",
+      difficulty: "Easy",
+      question: "What is SSR?",
+      code: ``,
+      output: ``,
+      explanation: `Server-side rendering.`,
+    },
+    {
+      id: 300,
+      category: "react_advanced",
+      level: "Next.js",
+      difficulty: "Easy",
+      question: "What is CSR?",
+      code: ``,
+      output: ``,
+      explanation: `Client-side rendering.`,
+    },
+    {
+      id: 301,
+      category: "react_advanced",
+      level: "Next.js",
+      difficulty: "Easy",
+      question: "What is SSG?",
+      code: ``,
+      output: ``,
+      explanation: `Static site generation.`,
+    },
+    {
+      id: 302,
+      category: "react_advanced",
+      level: "Next.js",
+      difficulty: "Easy",
+      question: "What is Hydration?",
+      code: ``,
+      output: ``,
+      explanation: `Attaching events to SSR HTML.`,
+    },
+    {
+      id: 303,
+      category: "react_advanced",
+      level: "Next.js",
+      difficulty: "Easy",
+      question: "What is getServerSideProps?",
+      code: ``,
+      output: ``,
+      explanation: `SSR data fetch.`,
+    },
+    {
+      id: 304,
+      category: "react_advanced",
+      level: "Next.js",
+      difficulty: "Easy",
+      question: "What is getStaticProps?",
+      code: ``,
+      output: ``,
+      explanation: `SSG data fetch.`,
+    },
+    {
+      id: 305,
+      category: "react_advanced",
+      level: "Next.js",
+      difficulty: "Easy",
+      question: "What is ISR?",
+      code: ``,
+      output: ``,
+      explanation: `Incremental static regeneration.`,
+    },
+    {
+      id: 306,
+      category: "react_advanced",
+      level: "Next.js",
+      difficulty: "Easy",
+      question: "What is Dynamic routing?",
+      code: ``,
+      output: ``,
+      explanation: `Routes from file system.`,
+    },
+    {
+      id: 307,
+      category: "react_advanced",
+      level: "Next.js",
+      difficulty: "Easy",
+      question: "What are API routes?",
+      code: ``,
+      output: ``,
+      explanation: `Backend inside Next.js.`,
+    },
+    {
+      id: 308,
+      category: "react_advanced",
+      level: "Security",
+      difficulty: "Easy",
+      question: "What is JWT?",
+      code: ``,
+      output: ``,
+      explanation: `Token-based auth.`,
+    },
+    {
+      id: 309,
+      category: "react_advanced",
+      level: "Security",
+      difficulty: "Easy",
+      question: "Access vs Refresh token?",
+      code: ``,
+      output: ``,
+      explanation: `Short vs long lived.`,
+    },
+    {
+      id: 310,
+      category: "react_advanced",
+      level: "Security",
+      difficulty: "Easy",
+      question: "What is XSS prevention?",
+      code: ``,
+      output: ``,
+      explanation: `Sanitization.`,
+    },
+    {
+      id: 311,
+      category: "react_advanced",
+      level: "Security",
+      difficulty: "Easy",
+      question: "What is CSRF prevention?",
+      code: ``,
+      output: ``,
+      explanation: `Tokens.`,
+    },
+    {
+      id: 312,
+      category: "react_advanced",
+      level: "Security",
+      difficulty: "Easy",
+      question: "What is Payment security?",
+      code: ``,
+      output: ``,
+      explanation: `Backend verification.`,
+    },
+    {
+      id: 313,
+      category: "react_advanced",
+      level: "Security",
+      difficulty: "Easy",
+      question: "What is Stripe integration?",
+      code: ``,
+      output: ``,
+      explanation: `Tokenization.`,
+    },
+    {
+      id: 314,
+      category: "react_advanced",
+      level: "Security",
+      difficulty: "Easy",
+      question: "What is Razorpay?",
+      code: ``,
+      output: ``,
+      explanation: `Indian payment gateway.`,
+    },
+    {
+      id: 315,
+      category: "react_advanced",
+      level: "Optimization",
+      difficulty: "Easy",
+      question: "What is Optimistic UI?",
+      code: ``,
+      output: ``,
+      explanation: `Update UI before response.`,
+    },
+    {
+      id: 316,
+      category: "react_advanced",
+      level: "Testing",
+      difficulty: "Easy",
+      question: "What are Error boundaries?",
+      code: ``,
+      output: ``,
+      explanation: `Catch UI errors.`,
+    },
+    {
+      id: 317,
+      category: "react_advanced",
+      level: "Testing",
+      difficulty: "Easy",
+      question: "What is Testing?",
+      code: ``,
+      output: ``,
+      explanation: `Ensure app quality.`,
+    },
+    {
+      id: 318,
+      category: "react_advanced",
+      level: "Testing",
+      difficulty: "Easy",
+      question: "What is Jest?",
+      code: ``,
+      output: ``,
+      explanation: `Unit testing.`,
+    },
+    {
+      id: 319,
+      category: "react_advanced",
+      level: "Testing",
+      difficulty: "Easy",
+      question: "What is Cypress?",
+      code: ``,
+      output: ``,
+      explanation: `E2E testing.`,
+    },
+    {
+      id: 320,
+      category: "react_advanced",
+      level: "JS Advanced",
+      difficulty: "Easy",
+      question: "What is optional chaining?",
+      code: ``,
+      output: ``,
+      explanation: `Safely access nested properties.`,
+    },
+    {
+      id: 321,
+      category: "react_advanced",
+      level: "JS Advanced",
+      difficulty: "Easy",
+      question: "What is Nullish coalescing?",
+      code: ``,
+      output: ``,
+      explanation: `Returns right operand if left is null or undefined.`,
+    },
+    {
+      id: 322,
+      category: "react_advanced",
+      level: "JS Advanced",
+      difficulty: "Easy",
+      question: "What is module?",
+      code: ``,
+      output: ``,
+      explanation: `Reusable piece of code with export/import.`,
+    },
+    {
+      id: 323,
+      category: "react_advanced",
+      level: "JS Advanced",
+      difficulty: "Easy",
+      question: "What are ES6 features?",
+      code: ``,
+      output: ``,
+      explanation: `Arrow functions, classes, promises, modules.`,
+    },
+    {
+      id: 324,
+      category: "react_advanced",
+      level: "JS Advanced",
+      difficulty: "Easy",
+      question: "What is BigInt?",
+      code: ``,
+      output: ``,
+      explanation: `Data type for large integers.`,
+    },
+    {
+      id: 325,
+      category: "react_advanced",
+      level: "JS Advanced",
+      difficulty: "Easy",
+      question: "What is GC?",
+      code: ``,
+      output: ``,
+      explanation: `Garbage Collector that frees unused memory.`,
+    },
+    {
+      id: 326,
+      category: "react_advanced",
+      level: "Event Loop",
+      difficulty: "Easy",
+      question: "What is Microtask queue?",
+      code: ``,
+      output: ``,
+      explanation: `Queue for promises and mutation observers.`,
+    },
+    {
+      id: 327,
+      category: "react_advanced",
+      level: "Event Loop",
+      difficulty: "Easy",
+      question: "What is Macrotask queue?",
+      code: ``,
+      output: ``,
+      explanation: `Queue for setTimeout, setInterval, I/O.`,
+    },
+    {
+      id: 328,
+      category: "react_advanced",
+      level: "Memory",
+      difficulty: "Easy",
+      question: "What is deep copy?",
+      code: ``,
+      output: ``,
+      explanation: `Completely independent copy of an object.`,
+    },
+    {
+      id: 329,
+      category: "react_advanced",
+      level: "Memory",
+      difficulty: "Easy",
+      question: "What is Shallow copy?",
+      code: ``,
+      output: ``,
+      explanation: `Copies only first-level properties.`,
+    },
+    {
+      id: 330,
+      category: "react_advanced",
+      level: "Operators",
+      difficulty: "Easy",
+      question: "What is Spread operator?",
+      code: ``,
+      output: ``,
+      explanation: `Expands iterable elements.`,
+    },
+    {
+      id: 331,
+      category: "react_advanced",
+      level: "Operators",
+      difficulty: "Easy",
+      question: "What is Rest operator?",
+      code: ``,
+      output: ``,
+      explanation: `Collects multiple elements into one.`,
+    },
+    {
+      id: 332,
+      category: "react_advanced",
+      level: "Memory",
+      difficulty: "Easy",
+      question: "What is memory leak?",
+      code: ``,
+      output: ``,
+      explanation: `Unused memory not released by GC.`,
+    },
+    {
+      id: 333,
+      category: "react_advanced",
+      level: "Memory",
+      difficulty: "Easy",
+      question: "How to prevent memory leak?",
+      code: ``,
+      output: ``,
+      explanation: `Clear timers, remove listeners.`,
+    },
+    {
+      id: 334,
+      category: "react_advanced",
+      level: "JS Core",
+      difficulty: "Easy",
+      question: "What is strict mode?",
+      code: ``,
+      output: ``,
+      explanation: `Restricts unsafe JavaScript behavior.`,
+    },
+    {
+      id: 335,
+      category: "react_advanced",
+      level: "JS Core",
+      difficulty: "Easy",
+      question: "What is currying?",
+      code: ``,
+      output: ``,
+      explanation: `Transforming function with multiple args into nested functions.`,
+    },
+    {
+      id: 336,
+      category: "react_advanced",
+      level: "JS Core",
+      difficulty: "Easy",
+      question: "What is IIFE?",
+      code: ``,
+      output: ``,
+      explanation: `Immediately Invoked Function Expression.`,
+    },
+    {
+      id: 337,
+      category: "react_advanced",
+      level: "Events",
+      difficulty: "Easy",
+      question: "What is event bubbling?",
+      code: ``,
+      output: ``,
+      explanation: `Event propagates from child to parent.`,
+    },
+    {
+      id: 338,
+      category: "react_advanced",
+      level: "Events",
+      difficulty: "Easy",
+      question: "What is Event capturing?",
+      code: ``,
+      output: ``,
+      explanation: `Event propagates from parent to child.`,
+    },
+    {
+      id: 339,
+      category: "react_advanced",
+      level: "Events",
+      difficulty: "Easy",
+      question: "How to Stop propagation?",
+      code: ``,
+      output: ``,
+      explanation: `Prevents event from bubbling.`,
+    },
+    {
+      id: 340,
+      category: "react_advanced",
+      level: "DOM",
+      difficulty: "Easy",
+      question: "What is DOM?",
+      code: ``,
+      output: ``,
+      explanation: `Document Object Model.`,
+    },
+    {
+      id: 341,
+      category: "react_advanced",
+      level: "Storage",
+      difficulty: "Easy",
+      question: "LocalStorage vs SessionStorage?",
+      code: ``,
+      output: ``,
+      explanation: `LocalStorage persists, SessionStorage is per session.`,
+    },
+    {
+      id: 342,
+      category: "react_advanced",
+      level: "Storage",
+      difficulty: "Easy",
+      question: "What are Cookies?",
+      code: ``,
+      output: ``,
+      explanation: `Small data stored in browser sent with requests.`,
+    },
+    {
+      id: 343,
+      category: "react_advanced",
+      level: "Security",
+      difficulty: "Easy",
+      question: "What is CORS?",
+      code: ``,
+      output: ``,
+      explanation: `Security mechanism for cross-origin requests.`,
+    },
+    {
+      id: 344,
+      category: "react_advanced",
+      level: "Security",
+      difficulty: "Easy",
+      question: "What is XSS?",
+      code: ``,
+      output: ``,
+      explanation: `Cross-site scripting attack.`,
+    },
+    {
+      id: 345,
+      category: "react_advanced",
+      level: "Security",
+      difficulty: "Easy",
+      question: "What is CSRF?",
+      code: ``,
+      output: ``,
+      explanation: `Cross-site request forgery attack.`,
+    },
+    {
+      id: 346,
+      category: "react_advanced",
+      level: "Async",
+      difficulty: "Easy",
+      question: "How JS handles async?",
+      code: ``,
+      output: ``,
+      explanation: `Via callbacks, promises, async/await.`,
+    },
+    {
+      id: 347,
+      category: "react_advanced",
+      level: "Core",
+      difficulty: "Easy",
+      question: "What is JavaScript?",
+      code: ``,
+      output: ``,
+      explanation: `A single-threaded, interpreted, dynamic programming language mainly used for web development.`,
+    },
+    {
+      id: 348,
+      category: "react_advanced",
+      level: "Core",
+      difficulty: "Easy",
+      question: "Is JavaScript single-threaded?",
+      code: ``,
+      output: ``,
+      explanation: `Yes, but handles async via event loop.`,
+    },
+    {
+      id: 349,
+      category: "react_advanced",
+      level: "Core",
+      difficulty: "Easy",
+      question: "What is Event Loop?",
+      code: ``,
+      output: ``,
+      explanation: `Manages execution of sync code, microtasks, and macrotasks.`,
+    },
+    {
+      id: 350,
+      category: "react_advanced",
+      level: "Core",
+      difficulty: "Easy",
+      question: "var vs let vs const?",
+      code: ``,
+      output: ``,
+      explanation: `var is function-scoped; let/const block-scoped; const not reassigned.`,
+    },
+    {
+      id: 351,
+      category: "react_advanced",
+      level: "Core",
+      difficulty: "Easy",
+      question: "What is hoisting?",
+      code: ``,
+      output: ``,
+      explanation: `JS moves variable and function declarations to top of scope.`,
+    },
+    {
+      id: 352,
+      category: "react_advanced",
+      level: "Core",
+      difficulty: "Easy",
+      question: "What is Temporal Dead Zone?",
+      code: ``,
+      output: ``,
+      explanation: `Time between declaration and initialization where access is not allowed.`,
+    },
+    {
+      id: 353,
+      category: "react_advanced",
+      level: "Core",
+      difficulty: "Easy",
+      question: "What is closure?",
+      code: ``,
+      output: ``,
+      explanation: `Function that remembers variables from its lexical scope.`,
+    },
+    {
+      id: 354,
+      category: "react_advanced",
+      level: "Core",
+      difficulty: "Easy",
+      question: "What is lexical scope?",
+      code: ``,
+      output: ``,
+      explanation: `Scope determined by code position.`,
+    },
+    {
+      id: 355,
+      category: "react_advanced",
+      level: "Operators",
+      difficulty: "Easy",
+      question: "== vs ===?",
+      code: ``,
+      output: ``,
+      explanation: `== checks value; === checks value and type.`,
+    },
+    {
+      id: 356,
+      category: "react_advanced",
+      level: "Core",
+      difficulty: "Easy",
+      question: "What is coercion?",
+      code: ``,
+      output: ``,
+      explanation: `Automatic conversion of one data type to another.`,
+    },
+    {
+      id: 357,
+      category: "react_advanced",
+      level: "Core",
+      difficulty: "Easy",
+      question: "What is NaN?",
+      code: ``,
+      output: ``,
+      explanation: `Special value representing Not-a-Number.`,
+    },
+    {
+      id: 358,
+      category: "react_advanced",
+      level: "OOP",
+      difficulty: "Easy",
+      question: "What is prototype?",
+      code: ``,
+      output: ``,
+      explanation: `Mechanism by which objects inherit properties.`,
+    },
+    {
+      id: 359,
+      category: "react_advanced",
+      level: "OOP",
+      difficulty: "Easy",
+      question: "What is Prototypal inheritance?",
+      code: ``,
+      output: ``,
+      explanation: `Objects inherit directly from other objects.`,
+    },
+    {
+      id: 360,
+      category: "react_advanced",
+      level: "Context",
+      difficulty: "Easy",
+      question: "What is this keyword?",
+      code: ``,
+      output: ``,
+      explanation: `Refers to object executing the function.`,
+    },
+    {
+      id: 361,
+      category: "react_advanced",
+      level: "Functions",
+      difficulty: "Easy",
+      question: "What is Arrow function this?",
+      code: ``,
+      output: ``,
+      explanation: `Arrow functions don't have their own this.`,
+    },
+    {
+      id: 362,
+      category: "react_advanced",
+      level: "Functions",
+      difficulty: "Easy",
+      question: "What are Call, apply, bind?",
+      code: ``,
+      output: ``,
+      explanation: `Methods to control function execution context.`,
+    },
+    {
+      id: 363,
+      category: "react_advanced",
+      level: "Performance",
+      difficulty: "Easy",
+      question: "What is debounce?",
+      code: ``,
+      output: ``,
+      explanation: `Limits function execution after a delay.`,
+    },
+    {
+      id: 364,
+      category: "react_advanced",
+      level: "Performance",
+      difficulty: "Easy",
+      question: "What is throttle?",
+      code: ``,
+      output: ``,
+      explanation: `Limits function execution to once per interval.`,
+    },
+    {
+      id: 365,
+      category: "react_advanced",
+      level: "Async",
+      difficulty: "Easy",
+      question: "What is promise?",
+      code: ``,
+      output: ``,
+      explanation: `Object representing future completion or failure.`,
+    },
+    {
+      id: 366,
+      category: "react_advanced",
+      level: "Async",
+      difficulty: "Easy",
+      question: "What are Promise states?",
+      code: ``,
+      output: ``,
+      explanation: `Pending, fulfilled, rejected.`,
+    },
+    {
+      id: 367,
+      category: "react_advanced",
+      level: "Async",
+      difficulty: "Easy",
+      question: "What is async/await?",
+      code: ``,
+      output: ``,
+      explanation: `Syntax to handle promises in a synchronous-looking way.`,
+    },
   ];
 
   const filteredQuestions =
     activeCategory === "all"
       ? questions
       : questions.filter((q) => q.category === activeCategory);
+
+  const scrollCategories = (direction: "left" | "right") => {
+    if (categoryScrollRef.current) {
+      const scrollAmount = 300;
+      categoryScrollRef.current.scrollBy({
+        left: direction === "right" ? scrollAmount : -scrollAmount,
+        behavior: "smooth",
+      });
+    }
+  };
 
   // const getDifficultyColor = (difficulty) => {
   //   const colors = {
@@ -4889,7 +5637,9 @@ React.createElement('div', {id: 'abc'}, 'Hello')`,
       hour: "2-digit",
       minute: "2-digit",
     })}</p>
+    
   </div>
+  
 `;
 
     filteredQuestions.forEach((q, index) => {
@@ -4985,91 +5735,95 @@ React.createElement('div', {id: 'abc'}, 'Hello')`,
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-50 via-blue-50 to-pink-50">
-      {/* Header */}
-      <div className="bg-gradient-to-r from-purple-600 via-blue-600 to-cyan-600 text-white py-8 shadow-xl">
-        <div className="max-w-6xl mx-auto px-4">
-          <h1 className="text-4xl font-bold text-center mb-2">
-            🔥 JavaScript Interview Hub
-          </h1>
-          <p className="text-center text-purple-100 text-lg">
-            Master Async, Arrays & React Concepts
-          </p>
+      {/* Clean Navbar Header */}
+      <div className="bg-white border-b border-gray-200 sticky top-0 z-50">
+        {/* Top Bar - Logo & Action Buttons */}
+        <div className="max-w-7xl mx-auto px-4 py-4">
+          <div className="flex items-center justify-between gap-4 mb-4">
+            {/* Logo */}
+            <div className="flex-shrink-0">
+              <h1 className="text-2xl font-black text-blue-600">
+                📚 JS Interview Hub
+              </h1>
+            </div>
+
+            {/* Action Buttons */}
+            <div className="flex items-center gap-3 flex-shrink-0">
+              <button
+                onClick={downloadPDF}
+                className="flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg font-semibold transition-all text-sm"
+              >
+                <Download size={18} />
+                <span className="hidden sm:inline">Download</span>
+              </button>
+              <button
+                onClick={previewPDF}
+                className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-semibold transition-all text-sm"
+              >
+                <Eye size={18} />
+                <span className="hidden sm:inline">Preview</span>
+              </button>
+            </div>
+          </div>
+
+     
         </div>
       </div>
-
-      {/* Category Filter */}
+    
+      {/* Main Content Area */}
       <div className="max-w-6xl mx-auto px-4 py-8">
-        <div className="flex flex-wrap gap-3 justify-center mb-6">
-          {(showAllCategories ? categories : categories.slice(0, 5)).map(
-            (cat) => {
-              const Icon = cat.icon;
-              return (
-                <button
-                  key={cat.id}
-                  onClick={() => {
-                    setActiveCategory(cat.id);
-                   
-                  }}
-                  className={`flex items-center gap-2 px-6 py-3 rounded-full font-semibold transition-all transform hover:scale-105 ${
-                    activeCategory === cat.id
-                      ? `${cat.color} text-white shadow-lg`
-                      : "bg-white text-gray-700 hover:bg-gray-50"
-                  }`}
-                >
-                  <Icon size={20} />
-                  {cat.name}
-                </button>
-              );
-            }
-          )}
-          {categories.length > 5 && (
-            <button
-              onClick={() => setShowAllCategories(!showAllCategories)}
-              className="px-6 py-3 rounded-full font-semibold bg-gray-200 text-gray-700 hover:bg-gray-300 transition-all"
-            >
-              {showAllCategories ? (
-                <>
-                  <ChevronUp size={20} className="inline mr-2" />
-                  Show Less
-                </>
-              ) : (
-                <>
-                  <ChevronDown size={20} className="inline mr-2" />
-                  Show More
-                </>
-              )}
-            </button>
-          )}
-        </div>
 
-        {/* Action Buttons */}
-        <div className="flex flex-wrap gap-4 justify-center mb-8">
-          <button
-            onClick={downloadPDF}
-            className="flex items-center gap-2 bg-gradient-to-r from-green-500 to-emerald-600 text-white px-8 py-4 rounded-xl font-bold shadow-lg hover:shadow-xl transition-all transform hover:scale-105"
-          >
-            <Download size={24} />
-            Download PDF ({filteredQuestions.length} Questions)
-          </button>
-          <button
-            onClick={previewPDF}
-            className="flex items-center gap-2 bg-gradient-to-r from-blue-500 to-indigo-600 text-white px-8 py-4 rounded-xl font-bold shadow-lg hover:shadow-xl transition-all transform hover:scale-105"
-          >
-            <Eye size={24} />
-            Preview PDF
-          </button>
-        </div>
+        {/* Action Buttons Section */}
+        <div className="bg-gradient-to-r from-purple-50 via-blue-50 to-indigo-50 rounded-3xl p-2 sm:p-10 mb-8 shadow-md border border-purple-200">
+          <div className="max-w-4xl mx-auto">
+            {/* Title */}
+            <div className="text-center mb-6">
+             
+              <p className="text-gray-600 text-sm sm:text-base font-semibold">
+                Category: <span className="text-purple-600 font-bold">{categories.find((c) => c.id === activeCategory)?.name || 'All Questions'}</span>
+              </p>
+              <p className="text-gray-600 text-sm sm:text-base mt-1">
+                Total Questions Available: <span className="text-blue-600 font-bold">{filteredQuestions.length}</span>
+              </p>
+                   {/* Categories Bar */}
+          <div className="w-full">
+            <div className="flex items-center gap-2 justify-start sm:justify-center overflow-x-auto pb-2">
+              {categories.map((cat) => {
+                const Icon = cat.icon;
+                return (
+                  <button
+                    key={cat.id}
+                    onClick={() => {
+                      setActiveCategory(cat.id);
+                      setCurrentPage(1);
+                    }}
+                    title={cat.name}
+                    className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg whitespace-nowrap transition-all flex-shrink-0 text-xs sm:text-sm font-semibold ${
+                      activeCategory === cat.id
+                        ? `${cat.color} text-white`
+                        : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                    }`}
+                  >
+                    <Icon size={16} />
+                    <span className="hidden sm:inline">{cat.name}</span>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+            </div>
 
-        {/* Questions Count */}
-        <div className="text-center mb-6">
-          <span className="bg-white px-6 py-2 rounded-full shadow-md text-gray-700 font-semibold">
-            Showing {filteredQuestions.length} Questions
-          </span>
+     
+          </div>
         </div>
 
         {/* Questions List */}
         <div className="space-y-6">
-          {filteredQuestions.map((q, index) => (
+          {filteredQuestions
+            .slice((currentPage - 1) * ITEMS_PER_PAGE, currentPage * ITEMS_PER_PAGE)
+            .map((q, index) => {
+              const globalIndex = (currentPage - 1) * ITEMS_PER_PAGE + index + 1;
+              return (
             <div
               key={q.id}
               className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all"
@@ -5084,7 +5838,7 @@ React.createElement('div', {id: 'abc'}, 'Hello')`,
                   <div className="flex-1">
                     <div className="flex items-center gap-3 mb-2">
                       <span className="text-purple-600 font-bold text-lg">
-                        Q{index + 1}
+                        Q{globalIndex}
                       </span>
                       <span className="text-gray-500 font-semibold">
                         {q.level}
@@ -5112,40 +5866,95 @@ React.createElement('div', {id: 'abc'}, 'Hello')`,
 
                 {expandedQuestion === q.id && (
                   <div className="space-y-4 mt-6">
-                    <div>
-                      <h4 className="text-sm font-bold text-gray-600 mb-2">
-                        💻 CODE:
-                      </h4>
-                      <pre className="bg-gray-900 text-green-400 p-4 rounded-xl overflow-x-auto text-sm">
-                        {q.code}
-                      </pre>
-                    </div>
+                    {q.code && (
+                      <div>
+                        <h4 className="text-sm font-bold text-gray-600 mb-2">
+                          💻 CODE:
+                        </h4>
+                        <pre className="bg-gray-900 text-green-400 p-4 rounded-xl overflow-x-auto text-sm">
+                          {q.code}
+                        </pre>
+                      </div>
+                    )}
 
-                    <div>
-                      <h4 className="text-sm font-bold text-gray-600 mb-2">
-                        ✅ OUTPUT:
-                      </h4>
-                      <pre className="bg-green-50 text-green-800 p-4 rounded-xl border-l-4 border-green-500 text-sm">
-                        {q.output}
-                      </pre>
-                    </div>
+                    {q.output && (
+                      <div>
+                        <h4 className="text-sm font-bold text-gray-600 mb-2">
+                          ✅ OUTPUT:
+                        </h4>
+                        <pre className="bg-green-50 text-green-800 p-4 rounded-xl border-l-4 border-green-500 text-sm">
+                          {q.output}
+                        </pre>
+                      </div>
+                    )}
 
                     <div>
                       <h4 className="text-sm font-bold text-gray-600 mb-2">
                         🧠 EXPLANATION:
                       </h4>
                       <div className="bg-blue-50 p-4 rounded-xl border-l-4 border-blue-500">
-                        <pre className="text-blue-900 whitespace-pre-wrap text-sm font-sans leading-relaxed">
+                        <p className="text-blue-900 text-sm leading-relaxed">
                           {q.explanation}
-                        </pre>
+                        </p>
                       </div>
                     </div>
                   </div>
                 )}
               </div>
             </div>
-          ))}
+              );
+            })}
         </div>
+
+        {/* Bottom Pagination */}
+        {Math.ceil(filteredQuestions.length / ITEMS_PER_PAGE) > 1 && (
+          <div className="flex flex-col items-center gap-6 mt-12 mb-12 px-2">
+            {/* Page Indicator */}
+            <div className="bg-gradient-to-r from-purple-100 to-blue-100 px-6 py-3 rounded-full shadow-md">
+              <p className="text-gray-700 font-semibold text-center">
+                Page <span className="text-purple-600 font-bold text-lg">{currentPage}</span> of <span className="text-purple-600 font-bold text-lg">{Math.ceil(filteredQuestions.length / ITEMS_PER_PAGE)}</span>
+              </p>
+            </div>
+
+            {/* Page Numbers */}
+            <div className="flex flex-wrap gap-2 justify-center">
+              {Array.from({ length: Math.ceil(filteredQuestions.length / ITEMS_PER_PAGE) }, (_, i) => i + 1).map(page => (
+                <button
+                  key={page}
+                  onClick={() => setCurrentPage(page)}
+                  className={`px-3 py-2 rounded-lg font-semibold transition-all transform ${
+                    currentPage === page
+                      ? 'bg-gradient-to-r from-purple-600 to-blue-600 text-white shadow-lg scale-110'
+                      : 'bg-white text-gray-700 hover:bg-gray-100 shadow-md hover:shadow-lg hover:scale-105'
+                  }`}
+                >
+                  {page}
+                </button>
+              ))}
+            </div>
+
+            {/* Previous/Next Buttons */}
+            <div className="flex gap-4 w-full sm:w-auto justify-center">
+              <button
+                onClick={() => setCurrentPage(prev => Math.max(1, prev - 1))}
+                disabled={currentPage === 1}
+                className="flex items-center gap-2 px-6 py-3 bg-white text-gray-700 rounded-xl font-semibold shadow-md hover:shadow-lg hover:bg-gray-50 disabled:opacity-40 disabled:cursor-not-allowed transition-all transform hover:scale-105 disabled:hover:scale-100 flex-1 sm:flex-none justify-center"
+              >
+                <ChevronLeft size={20} />
+                <span>Previous</span>
+              </button>
+              
+              <button
+                onClick={() => setCurrentPage(prev => Math.min(Math.ceil(filteredQuestions.length / ITEMS_PER_PAGE), prev + 1))}
+                disabled={currentPage === Math.ceil(filteredQuestions.length / ITEMS_PER_PAGE)}
+                className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all transform hover:scale-105 disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:scale-100 flex-1 sm:flex-none justify-center"
+              >
+                <span>Next</span>
+                <ChevronRight size={20} />
+              </button>
+            </div>
+          </div>
+        )}
 
         {/* Golden Rules Box */}
         <div className="mt-12 bg-gradient-to-r from-yellow-400 via-orange-400 to-red-400 p-8 rounded-2xl shadow-xl">
