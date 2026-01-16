@@ -5637,7 +5637,9 @@ React.createElement('div', {id: 'abc'}, 'Hello')`,
       hour: "2-digit",
       minute: "2-digit",
     })}</p>
+    
   </div>
+  
 `;
 
     filteredQuestions.forEach((q, index) => {
@@ -5764,7 +5766,26 @@ React.createElement('div', {id: 'abc'}, 'Hello')`,
             </div>
           </div>
 
-          {/* Categories Bar */}
+     
+        </div>
+      </div>
+    
+      {/* Main Content Area */}
+      <div className="max-w-6xl mx-auto px-4 py-8">
+
+        {/* Action Buttons Section */}
+        <div className="bg-gradient-to-r from-purple-50 via-blue-50 to-indigo-50 rounded-3xl p-2 sm:p-10 mb-8 shadow-md border border-purple-200">
+          <div className="max-w-4xl mx-auto">
+            {/* Title */}
+            <div className="text-center mb-6">
+             
+              <p className="text-gray-600 text-sm sm:text-base font-semibold">
+                Category: <span className="text-purple-600 font-bold">{categories.find((c) => c.id === activeCategory)?.name || 'All Questions'}</span>
+              </p>
+              <p className="text-gray-600 text-sm sm:text-base mt-1">
+                Total Questions Available: <span className="text-blue-600 font-bold">{filteredQuestions.length}</span>
+              </p>
+                   {/* Categories Bar */}
           <div className="w-full">
             <div className="flex items-center gap-2 justify-start sm:justify-center overflow-x-auto pb-2">
               {categories.map((cat) => {
@@ -5790,24 +5811,6 @@ React.createElement('div', {id: 'abc'}, 'Hello')`,
               })}
             </div>
           </div>
-        </div>
-      </div>
-    
-      {/* Main Content Area */}
-      <div className="max-w-6xl mx-auto px-4 py-8">
-
-        {/* Action Buttons Section */}
-        <div className="bg-gradient-to-r from-purple-50 via-blue-50 to-indigo-50 rounded-3xl p-2 sm:p-10 mb-8 shadow-md border border-purple-200">
-          <div className="max-w-4xl mx-auto">
-            {/* Title */}
-            <div className="text-center mb-6">
-             
-              <p className="text-gray-600 text-sm sm:text-base font-semibold">
-                Category: <span className="text-purple-600 font-bold">{categories.find((c) => c.id === activeCategory)?.name || 'All Questions'}</span>
-              </p>
-              <p className="text-gray-600 text-sm sm:text-base mt-1">
-                Total Questions Available: <span className="text-blue-600 font-bold">{filteredQuestions.length}</span>
-              </p>
             </div>
 
      
