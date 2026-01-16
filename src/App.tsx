@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 import {
   Download,
   Eye,
@@ -8,12 +8,13 @@ import {
   ChevronDown,
   ChevronUp,
 } from "lucide-react";
-
+type Difficulty = "Easy" | "Medium" | "Hard" | "Expert";
 const App = () => {
   const [activeCategory, setActiveCategory] = useState("all");
-  const [activeSubCategory, setActiveSubCategory] = useState("all");
-  const [expandedQuestion, setExpandedQuestion] = useState(null);
-  const [showPreview, setShowPreview] = useState(false);
+
+  // const [expandedQuestion, setExpandedQuestion] = useState(null);
+  const [expandedQuestion, setExpandedQuestion] = useState<number | null>(null);
+
   const [showAllCategories, setShowAllCategories] = useState(false);
 
   const categories = [
@@ -4255,18 +4256,29 @@ React.createElement('div', {id: 'abc'}, 'Hello')`,
       ? questions
       : questions.filter((q) => q.category === activeCategory);
 
-  const getDifficultyColor = (difficulty) => {
-    const colors = {
-      Easy: "bg-green-100 text-green-700",
-      Medium: "bg-yellow-100 text-yellow-700",
-      Hard: "bg-orange-100 text-orange-700",
-      Expert: "bg-red-100 text-red-700",
-    };
-    return colors[difficulty] || "bg-gray-100 text-gray-700";
+  // const getDifficultyColor = (difficulty) => {
+  //   const colors = {
+  //     Easy: "bg-green-100 text-green-700",
+  //     Medium: "bg-yellow-100 text-yellow-700",
+  //     Hard: "bg-orange-100 text-orange-700",
+  //     Expert: "bg-red-100 text-red-700",
+  //   };
+  //   return colors[difficulty] || "bg-gray-100 text-gray-700";
+  // };
+
+  const getDifficultyColor = (difficulty: Difficulty) => {
+  const colors: Record<Difficulty, string> = {
+    Easy: "bg-green-100 text-green-700",
+    Medium: "bg-yellow-100 text-yellow-700",
+    Hard: "bg-orange-100 text-orange-700",
+    Expert: "bg-red-100 text-red-700",
   };
+  return colors[difficulty] || "bg-gray-100 text-gray-700";
+};
+
 
   // Helper function to escape HTML
-  const escapeHtml = (text) => {
+  const escapeHtml = (text:string)=>{
     if (!text) return "";
     return text
       .replace(/&/g, "&amp;")
@@ -4541,7 +4553,7 @@ React.createElement('div', {id: 'abc'}, 'Hello')`,
                   key={cat.id}
                   onClick={() => {
                     setActiveCategory(cat.id);
-                    setActiveSubCategory("all");
+                   
                   }}
                   className={`flex items-center gap-2 px-6 py-3 rounded-full font-semibold transition-all transform hover:scale-105 ${
                     activeCategory === cat.id
@@ -4624,7 +4636,7 @@ React.createElement('div', {id: 'abc'}, 'Hello')`,
                       </span>
                       <span
                         className={`px-3 py-1 rounded-full text-xs font-bold ${getDifficultyColor(
-                          q.difficulty
+                          q.difficulty as Difficulty
                         )}`}
                       >
                         {q.difficulty}
