@@ -25,6 +25,13 @@ const App = () => {
       color: "bg-purple-500",
       subCategories: [],
     },
+      {
+      id: "quickRevsion",
+      name: "Quick Revision",
+      icon: BookOpen,
+      color: "bg-gray-500",
+      subCategories: [],
+    },
     {
       id: "async",
       name: "Async & Event Loop",
@@ -4249,6 +4256,454 @@ React.createElement('div', {id: 'abc'}, 'Hello')`,
 • Hinglish: "Browser JSX nahi samajhta. Babel usko JavaScript function calls me convert karta hai."
 • Industrial: Understanding this helps in debugging and writing advanced patterns.`,
     },
+    {
+      id:255,
+      category:"quickRevsion",
+      question:"What is React Fiber?",
+      output:"React Fiber is a reimplementation of React’s reconciliation algorithm that allows incremental rendering and prioritization."
+
+    },
+    
+{
+ id:255,
+ category:"quickRevsion",
+ question:"What is React Fiber?",
+ output:"React Fiber is a reimplementation of React's reconciliation algorithm that enables incremental rendering, prioritization, and interruption for better performance."
+},
+{
+ id:256,
+ category:"quickRevsion",
+ question:"Explain reconciliation in React.",
+ output:"Reconciliation is the process where React compares the new virtual DOM with the previous one and updates only the changed parts in the real DOM."
+},
+{
+ id:257,
+ category:"quickRevsion",
+ question:"How does React batching work?",
+ output:"React groups multiple state updates into a single re-render to improve performance."
+},
+{
+ id:258,
+ category:"quickRevsion",
+ question:"Difference between useEffect and useLayoutEffect?",
+ output:"useLayoutEffect runs synchronously after DOM mutations, while useEffect runs asynchronously after paint."
+},
+{
+ id:259,
+ category:"quickRevsion",
+ question:"How do you prevent unnecessary re-renders?",
+ output:"Using React.memo, useCallback, useMemo, proper key usage, and splitting components."
+},
+{
+ id:260,
+ category:"quickRevsion",
+ question:"What causes memory leaks in React?",
+ output:"Uncleared timers, subscriptions, or event listeners inside useEffect."
+},
+{
+ id:261,
+ category:"quickRevsion",
+ question:"How does React handle keys internally?",
+ output:"Keys help React identify which elements have changed, added, or removed during reconciliation."
+},
+{
+ id:262,
+ category:"quickRevsion",
+ question:"Explain controlled vs uncontrolled components.",
+ output:"Controlled components use React state; uncontrolled rely on DOM state via refs."
+},
+{
+ id:263,
+ category:"quickRevsion",
+ question:"How do you design scalable React architecture?",
+ output:"By modular components, feature-based structure, reusable hooks, and clear state boundaries."
+},
+{
+ id:264,
+ category:"quickRevsion",
+ question:"Redux vs Context API?",
+ output:"Redux is better for complex global state, Context is suitable for small shared state."
+},
+{
+ id:265,
+ category:"quickRevsion",
+ question:"What is middleware in Redux?",
+ output:"Middleware intercepts actions to handle async logic or side effects."
+},
+{
+ id:266,
+ category:"quickRevsion",
+ question:"How does Next.js improve performance?",
+ output:"Through SSR, SSG, code splitting, image optimization, and caching."
+},
+{
+ id:267,
+ category:"quickRevsion",
+ question:"What is hydration?",
+ output:"Hydration attaches event listeners to server-rendered HTML on the client."
+},
+{
+ id:268,
+ category:"quickRevsion",
+ question:"How do you handle authentication in SSR?",
+ output:"By validating cookies or headers inside getServerSideProps."
+},
+{
+ id:269,
+ category:"quickRevsion",
+ question:"Explain code splitting.",
+ output:"Code splitting loads JavaScript in smaller chunks to reduce initial load time."
+},
+{
+ id:270,
+ category:"quickRevsion",
+ question:"What are Web Vitals?",
+ output:"Metrics like LCP, FID, and CLS that measure user experience performance."
+},
+{
+ id:271,
+ category:"quickRevsion",
+ question:"How do you optimize large lists?",
+ output:"Using virtualization libraries like react-window."
+},
+{
+ id:272,
+ category:"quickRevsion",
+ question:"How do you secure React applications?",
+ output:"By preventing XSS, using HTTP-only cookies, and secure API calls."
+},
+{
+ id:273,
+ category:"quickRevsion",
+ question:"How do you test React apps?",
+ output:"Using Jest for unit tests and Cypress for end-to-end tests."
+},
+
+/* ---------- React Quick Notes ---------- */
+
+{
+ id:274,
+ category:"quickRevsion",
+ question:"What is React?",
+ output:"A JavaScript library for building UI."
+},
+{
+ id:275,
+ category:"quickRevsion",
+ question:"What is JSX?",
+ output:"Syntax extension to write HTML in JS."
+},
+{
+ id:276,
+ category:"quickRevsion",
+ question:"Virtual DOM?",
+ output:"Lightweight copy of real DOM."
+},
+{
+ id:277,
+ category:"quickRevsion",
+ question:"Why React is fast?",
+ output:"Efficient diffing and batching."
+},
+{
+ id:278,
+ category:"quickRevsion",
+ question:"Props vs State?",
+ output:"Props are read-only, state is mutable."
+},
+{
+ id:279,
+ category:"quickRevsion",
+ question:"Hooks?",
+ output:"Functions to use state and lifecycle."
+},
+{
+ id:280,
+ category:"quickRevsion",
+ question:"Rules of Hooks?",
+ output:"Top-level, only in React functions."
+},
+{
+ id:281,
+ category:"quickRevsion",
+ question:"useState?",
+ output:"Manages component state."
+},
+{
+ id:282,
+ category:"quickRevsion",
+ question:"useEffect?",
+ output:"Handles side effects."
+},
+{
+ id:283,
+ category:"quickRevsion",
+ question:"Dependency array?",
+ output:"Controls effect execution."
+},
+{
+ id:284,
+ category:"quickRevsion",
+ question:"useMemo?",
+ output:"Memoizes values."
+},
+{
+ id:285,
+ category:"quickRevsion",
+ question:"useCallback?",
+ output:"Memoizes functions."
+},
+{
+ id:286,
+ category:"quickRevsion",
+ question:"React.memo?",
+ output:"Prevents unnecessary re-renders."
+},
+{
+ id:287,
+ category:"quickRevsion",
+ question:"Key prop?",
+ output:"Identifies list items."
+},
+{
+ id:288,
+ category:"quickRevsion",
+ question:"Re-render cause?",
+ output:"State/props change."
+},
+{
+ id:289,
+ category:"quickRevsion",
+ question:"Prevent re-render?",
+ output:"Memoization."
+},
+{
+ id:290,
+ category:"quickRevsion",
+ question:"Fiber?",
+ output:"React’s rendering engine."
+},
+{
+ id:291,
+ category:"quickRevsion",
+ question:"Lazy loading?",
+ output:"Load components on demand."
+},
+{
+ id:292,
+ category:"quickRevsion",
+ question:"Suspense?",
+ output:"Handles async rendering."
+},
+{
+ id:293,
+ category:"quickRevsion",
+ question:"Context API?",
+ output:"Global state sharing."
+},
+{
+ id:294,
+ category:"quickRevsion",
+ question:"Redux?",
+ output:"Predictable state container."
+},
+
+/* ---------- JavaScript Advanced ---------- */
+
+{
+ id:295,
+ category:"quickRevsion",
+ question:"What is optional chaining?",
+ output:"Safely access nested properties."
+},
+{
+ id:296,
+ category:"quickRevsion",
+ question:"Nullish coalescing?",
+ output:"Returns right operand if left is null or undefined."
+},
+{
+ id:297,
+ category:"quickRevsion",
+ question:"What is module?",
+ output:"Reusable piece of code with export/import."
+},
+{
+ id:298,
+ category:"quickRevsion",
+ question:"ES6 features?",
+ output:"Arrow functions, classes, promises, modules."
+},
+{
+ id:299,
+ category:"quickRevsion",
+ question:"What is BigInt?",
+ output:"Data type for large integers."
+},
+{
+ id:300,
+ category:"quickRevsion",
+ question:"What is GC?",
+ output:"Garbage Collector that frees unused memory."
+},
+
+/* ---------- Event Loop / Security ---------- */
+
+{
+ id:301,
+ category:"quickRevsion",
+ question:"Microtask queue?",
+ output:"Queue for promises and mutation observers."
+},
+{
+ id:302,
+ category:"quickRevsion",
+ question:"Macrotask queue?",
+ output:"Queue for setTimeout, setInterval, I/O."
+},
+{
+ id:303,
+ category:"quickRevsion",
+ question:"Deep copy?",
+ output:"Completely independent copy of an object."
+},
+{
+ id:304,
+ category:"quickRevsion",
+ question:"Shallow copy?",
+ output:"Copies only first-level properties."
+},
+{
+ id:305,
+ category:"quickRevsion",
+ question:"Memory leak?",
+ output:"Unused memory not released by GC."
+},
+{
+ id:306,
+ category:"quickRevsion",
+ question:"Strict mode?",
+ output:"Restricts unsafe JavaScript behavior."
+},
+{
+ id:307,
+ category:"quickRevsion",
+ question:"Currying?",
+ output:"Transforming function into nested functions."
+},
+{
+ id:308,
+ category:"quickRevsion",
+ question:"IIFE?",
+ output:"Immediately Invoked Function Expression."
+},
+{
+ id:309,
+ category:"quickRevsion",
+ question:"Event bubbling?",
+ output:"Event propagates from child to parent."
+},
+{
+ id:310,
+ category:"quickRevsion",
+ question:"Event capturing?",
+ output:"Event propagates from parent to child."
+},
+{
+ id:311,
+ category:"quickRevsion",
+ question:"DOM?",
+ output:"Document Object Model."
+},
+{
+ id:312,
+ category:"quickRevsion",
+ question:"CORS?",
+ output:"Security mechanism for cross-origin requests."
+},
+
+/* ---------- Core JavaScript ---------- */
+
+{
+ id:313,
+ category:"quickRevsion",
+ question:"What is JavaScript?",
+ output:"Single-threaded interpreted dynamic language."
+},
+{
+ id:314,
+ category:"quickRevsion",
+ question:"Event Loop?",
+ output:"Manages sync code, microtasks, macrotasks."
+},
+{
+ id:315,
+ category:"quickRevsion",
+ question:"var vs let vs const?",
+ output:"var function scoped, let/const block scoped."
+},
+{
+ id:316,
+ category:"quickRevsion",
+ question:"Hoisting?",
+ output:"Moves declarations to top."
+},
+{
+ id:317,
+ category:"quickRevsion",
+ question:"Closure?",
+ output:"Function remembers lexical scope."
+},
+{
+ id:318,
+ category:"quickRevsion",
+ question:"== vs ===?",
+ output:"== checks value, === checks value and type."
+},
+{
+ id:319,
+ category:"quickRevsion",
+ question:"this keyword?",
+ output:"Refers to execution context."
+},
+{
+ id:320,
+ category:"quickRevsion",
+ question:"Call apply bind?",
+ output:"Control function context."
+},
+{
+ id:321,
+ category:"quickRevsion",
+ question:"Debounce?",
+ output:"Delay execution."
+},
+{
+ id:322,
+ category:"quickRevsion",
+ question:"Throttle?",
+ output:"Limit execution rate."
+},
+{
+ id:323,
+ category:"quickRevsion",
+ question:"Promise?",
+ output:"Future value object."
+},
+{
+ id:324,
+ category:"quickRevsion",
+ question:"Promise states?",
+ output:"Pending, fulfilled, rejected."
+},
+{
+ id:325,
+ category:"quickRevsion",
+ question:"async/await?",
+ output:"Promise handling syntax."
+}
+
+
   ];
 
   const filteredQuestions =
