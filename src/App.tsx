@@ -1,4 +1,4 @@
-import  { useState} from "react";
+import  { useState, useEffect, useRef} from "react";
 import {
   Download,
   Eye,
@@ -27,7 +27,14 @@ const App = () => {
  
   
   const [currentPage, setCurrentPage] = useState(1);
- 
+  const questionsTopRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (questionsTopRef.current) {
+      questionsTopRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [currentPage]);
+
   const ITEMS_PER_PAGE = 10;
 
   const categories = [
@@ -5909,7 +5916,7 @@ Delegation & stopPropagation = Developer Techniques`,
         </div>
 
         {/* Questions List */}
-        <div className="space-y-6">
+        <div ref={questionsTopRef} className="space-y-6">
           {filteredQuestions
             .slice((currentPage - 1) * ITEMS_PER_PAGE, currentPage * ITEMS_PER_PAGE)
             .map((q, index) => {
