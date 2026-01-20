@@ -9,6 +9,13 @@ import {
   ChevronUp,
   ChevronLeft,
   ChevronRight,
+  Atom,
+  Library,
+  Calculator,
+  Box,
+  Blocks,
+  Layers,
+  Workflow,
 } from "lucide-react";
 type Difficulty = "Easy" | "Medium" | "Hard" | "Expert";
 const App = () => {
@@ -53,14 +60,14 @@ const App = () => {
     {
       id: "react",
       name: "React Hooks Practical",
-      icon: Code,
+      icon: Atom,
       color: "bg-cyan-500",
       subCategories: ["useState", "useEffect", "useMemo", "useCallback"],
     },
     {
       id: "reacttheory",
       name: "React Hooks Theory",
-      icon: BookOpen,
+      icon: Library,
       color: "bg-indigo-500",
       subCategories: [
         "Performance",
@@ -72,21 +79,21 @@ const App = () => {
     {
       id: "operators",
       name: "Operators & Coercion",
-      icon: Code,
+      icon: Calculator,
       color: "bg-orange-500",
       subCategories: ["Type Coercion", "String Operations", "Math Operators"],
     },
     {
       id: "scope",
       name: "Var, Let, Const & Scope",
-      icon: Code,
+      icon: Box,
       color: "bg-pink-500",
       subCategories: ["Hoisting", "TDZ", "Block Scope", "Closures"],
     },
     {
       id: "reactfundamentals",
       name: "React Fundamentals",
-      icon: BookOpen,
+      icon: Blocks,
       color: "bg-red-500",
       subCategories: [
         "Webpack",
@@ -105,9 +112,16 @@ const App = () => {
     {
       id: "react_advanced",
       name: "React & Fullstack",
-      icon: Code,
+      icon: Layers,
       color: "bg-blue-600",
       subCategories: [],
+    },
+    {
+      id: "event_propagation",
+      name: "Event Propagation",
+      icon: Workflow,
+      color: "bg-indigo-600",
+      subCategories: ["Bubbling", "Capturing", "Delegation"],
     },
   ];
 
@@ -5443,6 +5457,90 @@ React.createElement('div', {id: 'abc'}, 'Hello')`,
       output: ``,
       explanation: `Syntax to handle promises in a synchronous-looking way.`,
     },
+    {
+      id: 368,
+      category: "event_propagation",
+      level: "🧠 Concept",
+      difficulty: "Expert",
+      question: "Event Propagation Techniques – Complete Guide",
+      code: `// 1. Event Bubbling
+// Event Bubbling is a default browser behavior where an event starts from the target element (child) and propagates upward to its parent elements.
+// Execution Flow: Button → Card → Page
+
+const EventBubbling = () => {
+  return (
+    <div onClick={() => console.log("PAGE clicked")}>
+      <div onClick={() => console.log("CARD clicked")}>
+        <button onClick={() => console.log("BUTTON clicked")}>
+          Book Room
+        </button>
+      </div>
+    </div>
+  );
+};
+
+// 2. stopPropagation()
+// stopPropagation() is used to stop an event from bubbling up to parent elements.
+
+const handleButtonClick = (e) => {
+  e.stopPropagation();
+  console.log("Only button clicked");
+};
+
+// 3. Event Capturing
+// Event Capturing is a phase where the event propagates from parent to child before reaching the target element.
+// Execution Flow: Page → Card → Button
+
+const EventCapturing = () => {
+  return (
+    <div onClickCapture={() => console.log("PAGE capture")}>
+      <div onClickCapture={() => console.log("CARD capture")}>
+        <button onClickCapture={() => console.log("BUTTON capture")}>
+          Book Room
+        </button>
+      </div>
+    </div>
+  );
+};
+
+// 4. Event Delegation
+// Event Delegation is a developer technique where a single parent event handler manages events for multiple child elements using event bubbling.
+
+const EventDelegation = () => {
+  const handleClick = (e) => {
+    if (e.target.tagName === "BUTTON") {
+      console.log("Booked:", e.target.innerText);
+    }
+  };
+
+  return (
+    <div onClick={handleClick}>
+      <button>Deluxe Room</button>
+      <button>Suite Room</button>
+      <button>Standard Room</button>
+    </div>
+  );
+};`,
+      output: `BUTTON clicked
+CARD clicked
+PAGE clicked
+
+Only button clicked
+
+PAGE capture
+CARD capture
+BUTTON capture
+
+Booked: Suite Room`,
+      explanation: `• Event Bubbling: Event starts from target and goes up.
+• stopPropagation(): Stops bubbling.
+• Event Capturing: Event goes down from window to target. Use onClickCapture.
+• Event Delegation: Attach one listener to parent to handle events for multiple children.
+
+Interview Summary:
+Bubbling & Capturing = Browser Behaviors
+Delegation & stopPropagation = Developer Techniques`,
+    },
   ];
 
   const filteredQuestions =
@@ -5767,7 +5865,7 @@ React.createElement('div', {id: 'abc'}, 'Hello')`,
       <div className="max-w-6xl mx-auto px-4 py-8">
 
         {/* Action Buttons Section */}
-        <div className="bg-gradient-to-r from-purple-50 via-blue-50 to-indigo-50 rounded-3xl p-2 sm:p-10 mb-8 shadow-md border border-purple-200">
+        <div className="bg-transparent sm:bg-gradient-to-r sm:from-purple-50 sm:via-blue-50 sm:to-indigo-50 rounded-3xl p-2 sm:p-10 mb-8 shadow-none sm:shadow-md border-none sm:border sm:border-purple-200">
           <div className="max-w-4xl mx-auto">
             {/* Title */}
             <div className="text-center mb-6">
