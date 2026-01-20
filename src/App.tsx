@@ -9,6 +9,13 @@ import {
   ChevronUp,
   ChevronLeft,
   ChevronRight,
+  Atom,
+  Library,
+  Calculator,
+  Box,
+  Blocks,
+  Layers,
+  Workflow,
 } from "lucide-react";
 type Difficulty = "Easy" | "Medium" | "Hard" | "Expert";
 const App = () => {
@@ -53,14 +60,14 @@ const App = () => {
     {
       id: "react",
       name: "React Hooks Practical",
-      icon: Code,
+      icon: Atom,
       color: "bg-cyan-500",
       subCategories: ["useState", "useEffect", "useMemo", "useCallback"],
     },
     {
       id: "reacttheory",
       name: "React Hooks Theory",
-      icon: BookOpen,
+      icon: Library,
       color: "bg-indigo-500",
       subCategories: [
         "Performance",
@@ -72,21 +79,21 @@ const App = () => {
     {
       id: "operators",
       name: "Operators & Coercion",
-      icon: Code,
+      icon: Calculator,
       color: "bg-orange-500",
       subCategories: ["Type Coercion", "String Operations", "Math Operators"],
     },
     {
       id: "scope",
       name: "Var, Let, Const & Scope",
-      icon: Code,
+      icon: Box,
       color: "bg-pink-500",
       subCategories: ["Hoisting", "TDZ", "Block Scope", "Closures"],
     },
     {
       id: "reactfundamentals",
       name: "React Fundamentals",
-      icon: BookOpen,
+      icon: Blocks,
       color: "bg-red-500",
       subCategories: [
         "Webpack",
@@ -105,9 +112,16 @@ const App = () => {
     {
       id: "react_advanced",
       name: "React & Fullstack",
-      icon: Code,
+      icon: Layers,
       color: "bg-blue-600",
       subCategories: [],
+    },
+    {
+      id: "event_propagation",
+      name: "Event Propagation",
+      icon: Workflow,
+      color: "bg-indigo-600",
+      subCategories: ["Bubbling", "Capturing", "Delegation"],
     },
   ];
 
@@ -5767,7 +5781,7 @@ React.createElement('div', {id: 'abc'}, 'Hello')`,
       <div className="max-w-6xl mx-auto px-4 py-8">
 
         {/* Action Buttons Section */}
-        <div className="bg-gradient-to-r from-purple-50 via-blue-50 to-indigo-50 rounded-3xl p-2 sm:p-10 mb-8 shadow-md border border-purple-200">
+        <div className="bg-transparent sm:bg-gradient-to-r sm:from-purple-50 sm:via-blue-50 sm:to-indigo-50 rounded-3xl p-2 sm:p-10 mb-8 shadow-none sm:shadow-md border-none sm:border sm:border-purple-200">
           <div className="max-w-4xl mx-auto">
             {/* Title */}
             <div className="text-center mb-6">
